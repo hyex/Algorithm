@@ -1,0 +1,11 @@
+-- 미완성
+
+SELECT F.NAME, G.GRADE, ROUND(F.d_qty/F.p_qty,3) AS BAD_RATE, 
+			CASE 
+				WHEN G.GRADE = 'A' OR 'B' OR 'C' OR 'D'
+				THEN ' '
+				ELSE 'O'
+			END AS "MANAGE"
+FROM FACTORIES F JOIN GRADES G 
+ON MIN_D_RATE <= ROUND(F.d_qty/F.p_qty,3) < MAX_D_RATE
+ORDER BY GRADE, BAD_RATE, NAME;
